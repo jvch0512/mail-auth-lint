@@ -1,0 +1,24 @@
+; Synthetic DNS export for example.test domains (documentation only, not real zones)
+; name  ttl  class  type  value
+
+; --- shop.example.test: well configured
+shop.example.test.            300 IN MX  10 mx1.mail.example.test.
+shop.example.test.            300 IN TXT "v=spf1 include:_spf.mail.example.test ip4:203.0.113.0/28 -all"
+_dmarc.shop.example.test.     300 IN TXT "v=DMARC1; p=reject; rua=mailto:dmarc@shop.example.test; pct=100"
+s1._domainkey.shop.example.test. 300 IN TXT "v=DKIM1; k=rsa; p=v6Dsi98pRlR4edUKaGh+oy4vpijbGHNXQVhYtjPRlNm/oOyL3ylGVHh51QpoaH6jLi+mKNsYc1dBWFi2M9GU2b+g7IvfKUZUeHnVCmhofqMuL6Yo2xhzV0FYWLYz0ZTZv6Dsi98pRlR4edUKaGh+oy4vpijbGHNXQVhYtjPRlNm/oOyL3ylGVHh51QpoaH6jLi+mKNsYc1dBWFi2M9GU2b+g7IvfKUZUeHnVCmhofqMuL6Yo2xhzV0FYWLYz0ZTZv6Dsi98pRlR4edUKaGh+oy4vpijbGHNXQVhYtjPRlNm/oOyL3ylGVHh51QpoaH6jLi+mKNsYc1dBWFi2M9GU2b+g7IvfKUZUeHnVCmhofqMuL6Yo2xhzV0FYWLYz0ZTZv6Dsi98p"
+
+; --- legacy.example.test: the usual problems
+legacy.example.test.          300 IN MX  10 mail.legacy.example.test.
+legacy.example.test.          300 IN TXT "v=spf1 +all"
+legacy.example.test.          300 IN TXT "v=spf1 mx -all"
+_dmarc.legacy.example.test.   300 IN TXT "v=DMARC1; p=none"
+old._domainkey.legacy.example.test. 300 IN TXT "v=DKIM1; k=rsa; t=y; p=457vgvYbIeLn92L8xDBzWPFldX8ud+yFXWmS9+AZGTLjnu+C9hsh4uf3YvzEMHNY8WV1fy537IVdaZL34BkZMuOe74L2GyHi5/di/MQwc1jxZXV/LnfshV1pkvfgGRky457vgvYbIeLn92L8xDBzWPFldX8ud+yFXWmS9+AZGTLjnu+C9hsh4uf3YvzEMHNY8WV1fy537IVdaZL34BkZMuOe"
+weak._domainkey.legacy.example.test. 300 IN TXT "v=DKIM1; k=rsa; p=lPhgeRXf8l8BPkX8BkL7mDCw+yWrCrRtR36vEGHe83mU+GB5Fd/yXwE+RfwGQvuYMLD7JasKtG1Hfq8QYd7zeZT4YHkV"
+
+; --- bulk.example.test: too many includes, soft policy
+bulk.example.test.            300 IN MX  10 mx.bulk.example.test.
+bulk.example.test.            300 IN TXT "v=spf1 include:a.example.test include:b.example.test include:c.example.test include:d.example.test include:e.example.test include:f.example.test include:g.example.test mx a include:h.example.test include:i.example.test ~all"
+_dmarc.bulk.example.test.     300 IN TXT "v=DMARC1; p=quarantine; pct=25; rua=mailto:r@bulk.example.test"
+
+; --- parked.example.test: no mail, but nothing says so
+parked.example.test.          300 IN MX  0 .

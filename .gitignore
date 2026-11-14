@@ -1,0 +1,5 @@
+_build/
+mail-auth-lint
+*.hi
+*.o
+tests/spec

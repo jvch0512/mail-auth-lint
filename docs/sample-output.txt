@@ -1,0 +1,15 @@
+bulk.example.test: grade B, score 75/100, 3 findings
+  HIGH     MA004  SPF needs 11 DNS lookups before nested includes: the limit is 10, over it SPF fails permanently
+  MEDIUM   MA003  SPF ends with ~all (softfail): move to -all once the sources are known
+  MEDIUM   MA006  DMARC applies to only 25% of mail (pct=)
+legacy.example.test: grade F, score 20/100, 6 findings
+  CRITICAL MA002  more than one SPF record: this is a permanent error and SPF stops working
+  CRITICAL MA007  weak: DKIM key looks like 512-bit RSA and can be factored
+  MEDIUM   MA006  DMARC policy is p=none: monitoring only, spoofed mail is still delivered
+  MEDIUM   MA006  DMARC has no rua= address: you will never see who is sending as you
+  MEDIUM   MA007  old: DKIM key looks like 1024-bit RSA: rotate to 2048-bit
+  MEDIUM   MA007  old: DKIM is in testing mode (t=y): receivers ignore failures
+parked.example.test: grade C, score 70/100, 2 findings
+  HIGH     MA001  no SPF record: anyone can spoof this domain and receivers have nothing to check
+  HIGH     MA005  no DMARC record: receivers cannot be told to reject spoofed mail
+shop.example.test: grade A, score 100/100, 0 findings
