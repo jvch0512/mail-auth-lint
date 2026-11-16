@@ -2,6 +2,8 @@
 
 Email spoofing is solved on paper: SPF, DKIM and DMARC. In practice most domains have a record that is wrong in a small, silent way: two SPF records, a `+all`, DMARC stuck on `p=none` for three years, a 1024-bit DKIM key. mail-auth-lint reads your DNS records and says which.
 
+![Terminal demo of mail-auth-lint on its sample data](docs/demo.svg)
+
 **Live demo:** https://jvch0512.github.io/mail-auth-lint/ (a report on a synthetic zone export for `example.test` domains)
 
 Haskell, `base` only. The parsing and every rule are pure functions, which is why the test suite can be this thorough.
